@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("books")
+@RequestMapping("/books")
 public class BookController {
 
     private List<Book> bookList;
@@ -101,12 +101,11 @@ public class BookController {
     // pass author name as request param
     // getBooksByAuthor()
     @GetMapping("/get-books-by-author")
-    public ResponseEntity<Book> getBooksByAuthor(@RequestParam String author){
-        Book book = null;
+    public ResponseEntity<List<Book>> getBooksByAuthor(@RequestParam String author){
+        List<Book> book = new ArrayList<>();
         for (Book book1 : bookList){
-            if(book.getAuthor().equals(author)){
-                book = book1;
-                break;
+            if(book1.getAuthor().equals(author)){
+                book.add(book1);
             }
         }
         return new ResponseEntity<>(book, HttpStatus.CREATED);
@@ -115,12 +114,11 @@ public class BookController {
     // get request /get-books-by-genre
     // pass genre name as request param
     // getBooksByGenre()
-    public ResponseEntity<Book> getBooksByGenre(@RequestParam String genre){
-        Book book = null;
+    public ResponseEntity<List<Book>> getBooksByGenre(@RequestParam String genre){
+        List<Book> book = new ArrayList<>();
         for (Book book1 : bookList){
-            if(book.getGenre().equals(genre)){
-                book = book1;
-                break;
+            if(book1.getGenre().equals(genre)){
+                book.add(book1);
             }
         }
         return new ResponseEntity<>(book, HttpStatus.CREATED);
