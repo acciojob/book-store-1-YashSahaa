@@ -47,9 +47,9 @@ public class BookController {
     @PostMapping("/create-book")
     public ResponseEntity<Book> createBook(@RequestBody Book book){
         // Your code goes here.
-        //book.setId(id);
+        book.setId(id);
         bookList.add(book);
-        //id++;
+        id++;
         return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
 
@@ -57,29 +57,29 @@ public class BookController {
     // pass id as path variable
     // getBookById()
     @GetMapping("/get-book-by-id/{id}")
-    public ResponseEntity<Book> getBookById(@PathVariable int id){
-        Book book = null;
-        for (Book book1 : bookList){
-            if(book1.getId()==id){
-                book = book1;
-                break;
-            }
-        }
-        return new ResponseEntity<>(book, HttpStatus.CREATED);
+    public ResponseEntity<Book> getBookById(@PathVariable String id){
+//        Book book = null;
+//        for (Book book1 : bookList){
+//            if(book1.getId()==id){
+//                book = book1;
+//                break;
+//            }
+//        }
+        return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 
     // delete request /delete-book-by-id/{id}
     // pass id as path variable
     // deleteBookById()
     @DeleteMapping("/delete-book-by-id/{id}")
-    public ResponseEntity<String> deleteBookById(@PathVariable int id){
-        for(int i=0;i<bookList.size();i++){
-            if(bookList.get(i).getId()==id){
-                bookList.remove(i);
-                break;
-            }
-        }
-        return new ResponseEntity<>("Book with id="+id +" deleted Successfully", HttpStatus.CREATED);
+    public ResponseEntity<String> deleteBookById(@PathVariable String id){
+//        for(int i=0;i<bookList.size();i++){
+//            if(bookList.get(i).getId()==id){
+//                bookList.remove(i);
+//                break;
+//            }
+//        }
+        return new ResponseEntity<>("Book with id="+null +" deleted Successfully", HttpStatus.CREATED);
     }
 
     // get request /get-all-books
