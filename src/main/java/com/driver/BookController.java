@@ -58,14 +58,15 @@ public class BookController {
     // getBookById()
     @GetMapping("/get-book-by-id/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable String id){
-//        Book book = null;
-//        for (Book book1 : bookList){
-//            if(book1.getId()==id){
-//                book = book1;
-//                break;
-//            }
-//        }
-        return new ResponseEntity<>(null, HttpStatus.CREATED);
+        int idd = Integer.parseInt(id);
+        Book book = null;
+        for (Book book1 : bookList){
+            if(book1.getId()==idd){
+                book = book1;
+                break;
+            }
+        }
+        return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
 
     // delete request /delete-book-by-id/{id}
@@ -73,13 +74,14 @@ public class BookController {
     // deleteBookById()
     @DeleteMapping("/delete-book-by-id/{id}")
     public ResponseEntity<String> deleteBookById(@PathVariable String id){
-//        for(int i=0;i<bookList.size();i++){
-//            if(bookList.get(i).getId()==id){
-//                bookList.remove(i);
-//                break;
-//            }
-//        }
-        return new ResponseEntity<>("Book with id="+null +" deleted Successfully", HttpStatus.CREATED);
+        int idd = Integer.parseInt(id);
+        for(int i=0;i<bookList.size();i++){
+            if(bookList.get(i).getId()==idd){
+                bookList.remove(i);
+                break;
+            }
+        }
+        return new ResponseEntity<>("Book with id="+ idd +" deleted Successfully", HttpStatus.CREATED);
     }
 
     // get request /get-all-books
